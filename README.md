@@ -8,7 +8,9 @@ SQL stands for Structured Query Language. SQL will allow you to interact with th
 
 Each *database* has at least one *table*, and each table has *records (rows)* amd *fields (columns)*.
 
-![Record and Field in a table.](https://lecontent.sololearn.com/material-images/8a1aa66040d74383b466acd6a9da49f5-1.01.07.png)
+<p align="center">
+<img src="https://lecontent.sololearn.com/material-images/8a1aa66040d74383b466acd6a9da49f5-1.01.07.png" alt="Records and fields." width="500"/>
+</p>
 
 ## Schema
 
@@ -20,7 +22,7 @@ The name of the fields on the first row are called *header* and the correspondin
 
 ## Getting a Field
 
-We have a table named *tb*. It has fields *f1*, *f2* and *f3*. The data stored in the field *f2* can be acccessed through:
+We have a table named *tb*. It has fields *f1*, *f2* and *f3*. The data stored in the field *f2* can be accessed through:
 
 ```sql
 SELECT f2
@@ -48,7 +50,9 @@ Unstructured data is information that is difficult to store in tables. <!-- TODO
 
 ## Relational database
 
-![](https://lecontent.sololearn.com/material-images/a51f8d8a65184b379a2356e0d09ed0c4-sql13.png)
+<p align="center">
+<img src="https://lecontent.sololearn.com/material-images/a51f8d8a65184b379a2356e0d09ed0c4-sql13.png" alt="Relational database." width="500"/>
+</p>
 
 A relational database stores information in tables. The different tables in a relational database are connected to each other using fields which are called *keys*.
 
@@ -83,7 +87,9 @@ The `LIMIT` keyword can be used to limit the number of the records, followed by 
 
 ## Offset
 
-![](https://lecontent.sololearn.com/material-images/d7120b3b2d334150bc30a0685796f1c4-2.03.11.png)
+<p align="center">
+<img src="https://lecontent.sololearn.com/material-images/d7120b3b2d334150bc30a0685796f1c4-2.03.11.png" alt="Offset and limit." width="500"/>
+</p>
 
 The `OFFSET` keyword should be added after the value of the `LIMIT` keyword, followed by an integer. For example:
 
@@ -93,7 +99,7 @@ LIMIT 3 OFFSET 2
 
 ## Data Types
 
-These types can be `text`, `numeric`. <!-- TODO: clarify -->
+Data types can be *string*, *numerical*, *boolean* (`True/False`) and *date/time*.
 
 ## As
 
@@ -150,7 +156,7 @@ Multiple queries can be separated using `;` at the end of the last line of each 
 
 ## Lower and Uppercase
 
-Strings in a field can be uppercased or lowecased using the functions `LOWER()` and `UPPER()`, respectively.
+Strings in a field can be uppercased or lowercased using the functions `LOWER()` and `UPPER()`, respectively.
 
 ```sql
 SELECT LOWER(f2), UPPER(f3)
@@ -188,6 +194,101 @@ FROM tb;
 ### Average
 
 `AVG()` calculates the average value.
+
+> [!NOTE]
+> When running queries that involve different operations, filtering happens first.
+
+## Data Collection
+
+### API
+
+*Servers* are computers that are always listening for requests of information. You can request information from a database server through an *API* (Application Programming Interface).
+
+### Web Scraping
+
+*Web scraping* allows you to extract information from websites. 
+
+## Grouping
+
+`GROUP BY` allows you to organize similar data into categories. It's combined with aggregations to compute key metrics for a group of records.
+
+```sql
+SELECT f1, AVG(f2)
+FROM tb
+GROUP BY f1
+```
+
+<p align="center">
+<img src="https://lecontent.sololearn.com/material-images/c142abf6ac07419fa752acf9e1d3fbaf-SQL4.03.04.png" alt="Filtering, grouping and aggregation." width="500"/>
+</p>
+
+> [!NOTE]
+> When a query contains both `WHERE` and `GROUP BY`, data is filtered first, then grouped.
+
+## Having
+
+`HAVING` allows you to filter data that has been grouped.
+
+> [!NOTE]
+> When a query contains both GROUP BY and HAVING, data is grouped first, then filtered.
+
+## Distinct
+
+The duplicated records can be identified using the following query:
+
+```sql
+SELECT f1, COUNT(f1)
+FROM tb
+GROUP BY f1
+HAVING COUNT(f1) > 1;
+```
+
+Use `DISTINCT` to eliminate duplicate values.
+
+```sql
+SELECT DISTINCT f1
+FROM tb
+```
+
+## Null
+
+`NULL` is used to indicate that a data value is missing and does not exist in the database. `NULL` values are not shown in result tables.
+
+Use `IS NULL` in combination with `WHERE` to find missing values.
+
+```sql
+SELECT * 
+FROM tb 
+WHERE f2 IS NULL
+```
+
+Extract non-null values using `IS NOT NULL`.
+
+```sql
+SELECT * 
+FROM tb 
+WHERE f2 IS NOT NULL
+```
+
+## Logical Operations
+
+Operations involving boolean values are known as *logical operations*.
+
+### And
+
+<p align="center">
+<img src="https://lecontent.sololearn.com/material-images/f3aadf1b0f254c9b9c4583e42d806694-Frame27192.png" alt="And." width="500"/>
+</p>
+
+The *AND operation* results in a True value only when all the values are True at the same time.
+
+### Or
+
+<p align="center">
+<img src="https://lecontent.sololearn.com/material-images/887e49a38f744ccb8690e0238a8ded4c-4.06.15.png" alt="Or." width="500"/>
+</p>
+
+The *OR logical operation* results in a True value if at least one of the conditions is True.
 
 ## References
 
